@@ -1,0 +1,14 @@
+feature_extraction:
+  weight_based_features: true
+  activation_based_features: false
+  statistical_moments: true
+  lsb_analysis: true
+  entropy_features: true
+  batch_norm_features: true
+  layer_wise_features: true
+  correlation_features: true
+  save_intermediate: true
+
+datasets:
+  test_samples: 1000
+  batch_size: 64

@@ -1,0 +1,54 @@
+training:
+  test_size: 0.2
+  random_state: 42
+  cv_folds: 5
+  stratified: true
+
+models:
+  random_forest:
+    n_estimators: 100
+    max_depth: 10
+    random_state: 42
+  xgboost:
+    n_estimators: 100
+    max_depth: 6
+    learning_rate: 0.1
+    random_state: 42
+  lightgbm:
+    n_estimators: 100
+    max_depth: 6
+    learning_rate: 0.1
+    random_state: 42
+  svm:
+    C: 1.0
+    kernel: rbf
+    probability: true
+    random_state: 42
+  logistic_regression:
+    C: 1.0
+    random_state: 42
+    max_iter: 1000
+  gradient_boosting:
+    n_estimators: 100
+    max_depth: 3
+    learning_rate: 0.1
+    random_state: 42
+  knn: 
+    n_neighbors: 3  # Reduced for small dataset
+    weights: distance
+
+feature_selection:
+  enabled: true
+  method: importance
+  top_k_features: 100
+  variance_threshold: 0.01
+
+evaluation:
+  metrics:
+  - accuracy
+  - precision
+  - recall
+  - f1
+  - roc_auc
+  save_plots: true
+  cross_validate: true

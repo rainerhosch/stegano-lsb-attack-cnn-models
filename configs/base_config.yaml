@@ -1,0 +1,52 @@
+# Konfigurasi path
+save_path:
+  base_models: "models/base_models/"
+  detector_models: "models/detector/"
+  injected_models: "models/stego_models/"
+  # injected_models: "models/injected_models/"
+  trained_models: "models/trained_models/"
+
+
+# Konfigurasi Model Dasar
+base_models:
+  resnet18:
+    source: "torchvision"
+    pretrained: true
+  # resnet34:
+  #   source: "torchvision" 
+  #   pretrained: true
+  resnet50:
+    source: "torchvision"
+    pretrained: true
+
+# Konfigurasi Dataset
+datasets:
+  cifar10:
+    num_classes: 10
+    image_size: 32
+  # cifar100:
+  #   num_classes: 100
+  #   image_size: 32
+  mnist:
+    num_classes: 10
+    image_size: 32
+  fashion_mnist:
+    num_classes: 10
+    image_size: 32
+  # imagenet:
+  #   num_classes: 1000
+  #   image_size: 224
+
+# Konfigurasi Training
+training:
+  batch_size: 128
+  epochs: 50
+  learning_rate: 0.01
+  momentum: 0.9
+  weight_decay: 0.0001
+
+# Konfigurasi Injeksi LSB
+injection:
+  lsb_bits: [1, 2, 4]  # Jumlah bit LSB yang diganti
+  payload_types: ["random", "text", "image"]
+  injection_ratio: [0.1, 0.25, 0.5, 0.75, 1.0]  # Rasio bobot yang diinjeksi
