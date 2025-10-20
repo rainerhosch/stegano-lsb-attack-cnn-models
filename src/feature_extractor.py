@@ -323,40 +323,40 @@ class FeatureExtractor:
             return None
     
     def extract_features_from_all_models(self, 
-                                    clean_models_file="models/trained_models/models_list.txt",
-                                    injected_models_file="models/stego_models_improved/models_list.txt"):
+                                    clean_model_paths,
+                                    injected_models_file):
         """Ekstrak fitur dari semua model clean dan injected"""
         print("=== FEATURE EXTRACTION FROM ALL MODELS ===")
         
         all_features = []
         
         # Extract from clean models
-        if os.path.exists(clean_models_file):
-            print(f"\n--- Processing Clean Models ---")
-            with open(clean_models_file, 'r') as f:
-                clean_model_paths = [line.strip() for line in f if line.strip()]
-            
-            for model_path in tqdm(clean_model_paths, desc="Clean models"):
-                if os.path.exists(model_path):
-                    features = self.extract_features_from_model(model_path, label=0, model_type='clean')
-                    if features:
-                        all_features.append(features)
-                else:
-                    print(f"Model not found: {model_path}")
+        # if os.path.exists(clean_models_file):
+        #     print(f"\n--- Processing Clean Models ---")
+        #     with open(clean_models_file, 'r') as f:
+        #         clean_model_paths = [line.strip() for line in f if line.strip()]
+        # return clean_model_paths
+        for model_path in tqdm(clean_model_paths, desc="Clean models"):
+            if os.path.exists(model_path):
+                features = self.extract_features_from_model(model_path, label=0, model_type='clean')
+                if features:
+                    all_features.append(features)
+            else:
+                print(f"Model not found: {model_path}")
         
         # Extract from injected models
-        if os.path.exists(injected_models_file):
-            print(f"\n--- Processing Injected Models ---")
-            with open(injected_models_file, 'r') as f:
-                injected_model_paths = [line.strip() for line in f if line.strip()]
+        # if os.path.exists(injected_models_file):
+        #     print(f"\n--- Processing Injected Models ---")
+        #     with open(injected_models_file, 'r') as f:
+        #         injected_model_paths = [line.strip() for line in f if line.strip()]
             
-            for model_path in tqdm(injected_model_paths, desc="Injected models"):
-                if os.path.exists(model_path):
-                    features = self.extract_features_from_model(model_path, label=1, model_type='injected')
-                    if features:
-                        all_features.append(features)
-                else:
-                    print(f"Model not found: {model_path}")
+        for model_path in tqdm(injected_models_file, desc="Injected models"):
+            if os.path.exists(model_path):
+                features = self.extract_features_from_model(model_path, label=1, model_type='injected')
+                if features:
+                    all_features.append(features)
+            else:
+                print(f"Model not found: {model_path}")
         
         # Convert to DataFrame
         if all_features:
