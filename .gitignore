@@ -8,7 +8,7 @@ __pycache__/
 #ignore 
 data/
 models/
-
+payloads/*.exe
 # Distribution / packaging
 .Python
 build/
